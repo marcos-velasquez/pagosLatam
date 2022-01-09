@@ -5,6 +5,12 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@pages/*": ["src/app/pages/*"],
+      "@core/*": ["src/app/core/*"],
+      "@app/*": ["src/app/*"],
+      "@environment": ["environments/environment"]
+    },
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -18,12 +24,6 @@
     "importHelpers": true,
     "target": "es2017",
     "module": "es2020",
-    "paths": {
-      "@pages/*": ["src/app/pages/*"],
-      "@core/*": ["src/app/core/*"],
-      "@app/*": ["src/app/*"],
-      "@env": ["environments/environment"]
-    },
     "lib": ["es2020", "dom"]
   },
   "angularCompilerOptions": {
