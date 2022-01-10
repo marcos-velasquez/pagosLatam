@@ -7,11 +7,37 @@ import { RippleModule } from 'primeng/ripple';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { ToolbarModule } from 'primeng/toolbar';
+import { AvatarModule } from 'primeng/avatar';
+import { SidebarModule } from 'primeng/sidebar';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { ChipModule } from 'primeng/chip';
+import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
-const MODULES = [CardModule, ButtonModule, InputTextModule, DividerModule, RippleModule, PasswordModule, ToastModule];
+const MODULES = [
+  CardModule,
+  ButtonModule,
+  InputTextModule,
+  DividerModule,
+  RippleModule,
+  PasswordModule,
+  ToastModule,
+  ToolbarModule,
+  AvatarModule,
+  SidebarModule,
+  SplitButtonModule,
+  TabMenuModule,
+  ChipModule,
+  DynamicDialogModule,
+  DropdownModule,
+  SelectButtonModule,
+];
 
 @NgModule({
-  providers: [MessageService],
+  providers: [MessageService, DialogService],
   imports: MODULES,
   exports: [...MODULES],
 })

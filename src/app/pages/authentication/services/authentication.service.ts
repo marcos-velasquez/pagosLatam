@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signInAnonymously,
   createUserWithEmailAndPassword,
+  authState,
 } from '@angular/fire/auth';
 import { UserLogin } from '../interfaces/user.interface';
 
@@ -16,6 +17,10 @@ import { UserLogin } from '../interfaces/user.interface';
 })
 export class AuthenticationService {
   constructor(@Optional() private auth: Auth) {}
+
+  currentUser() {
+    return authState(this.auth);
+  }
 
   withGoogle() {
     return signInWithPopup(this.auth, new GoogleAuthProvider());
@@ -38,6 +43,6 @@ export class AuthenticationService {
   }
 
   logout() {
-    signOut(this.auth);
+    return signOut(this.auth);
   }
 }

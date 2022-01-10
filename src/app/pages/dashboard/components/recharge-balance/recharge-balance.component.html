@@ -1,0 +1,42 @@
+<p-card>
+  <ng-template pTemplate="content">
+    <form class="p-fluid space-y-4">
+      <div class="p-field">
+        <label>OPERADORA</label>
+        <p-dropdown
+          inputId="class"
+          [options]="operators"
+          placeholder="Seleccione una operadora"
+          optionValue="value"
+          optionLabel="name"
+        ></p-dropdown>
+      </div>
+
+      <div class="p-field">
+        <label>TELÉFONO</label>
+        <input type="number" required pInputText />
+      </div>
+
+      <div class="p-field">
+        <label>CANTIADAD</label>
+        <p-selectButton [options]="amounts" optionLabel="name" optionValue="value"></p-selectButton>
+      </div>
+
+      <div class="p-field flex items-center justify-between">
+        <div>
+          <label>REFERENCIA</label>
+          <input type="text" required pInputText />
+        </div>
+
+        <div>
+          <input
+            type="file"
+            class="block mt-6 w-full text-sm text-yellow-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-900 file:text-white hover:file:bg-gray-800 transition-colors"
+          />
+        </div>
+      </div>
+
+      <button pButton type="button" label="ACEPTAR" class="p-button-secondary mt-10"></button>
+    </form>
+  </ng-template>
+</p-card>

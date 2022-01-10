@@ -1,0 +1,24 @@
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-th-large"
+      class="p-button-outlined p-button-warning"
+      (click)="showSidebar = !showSidebar"
+    ></button>
+  </div>
+
+  <div class="p-toolbar-group-right">
+    <p-splitButton
+      label="Marcos Velasquez"
+      icon="pi pi-user"
+      [model]="items"
+      styleClass="p-button-secondary"
+    ></p-splitButton>
+    <p-avatar label="P" styleClass="mx-5" size="large"></p-avatar>
+  </div>
+</p-toolbar>
+
+<app-sidebar [visible]="showSidebar"></app-sidebar>

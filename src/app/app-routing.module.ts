@@ -19,7 +19,7 @@ const routes: Routes = [
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
-    path: 'history',
+    path: 'historial',
     loadChildren: () => import('./pages/history/history.module').then((m) => m.HistoryModule),
     canActivate: [AuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
