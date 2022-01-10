@@ -1,0 +1,34 @@
+<app-card>
+  <form class="w-full flex flex-col gap-6 justify-center items-center pt-5">
+    <span class="p-float-label p-input-icon-left w-full max-w-sm">
+      <i class="pi pi-user"></i>
+      <input id="email" type="text" pInputText class="w-full" />
+      <label for="email">Email</label>
+    </span>
+
+    <span class="p-float-label p-input-icon-left w-full max-w-sm">
+      <i class="pi pi-key"></i>
+      <input id="password" type="password" pInputText class="w-full" />
+      <label for="password">Contraseña</label>
+      <span appTogglePassword></span>
+    </span>
+
+    <span class="p-float-label p-input-icon-left w-full">
+      <i class="pi pi-key"></i>
+      <input id="password" type="password" pInputText class="w-full" />
+      <label for="password">Confirmar contraseña</label>
+      <span appTogglePassword></span>
+    </span>
+
+    <button pButton type="submit" class="p-button-text shadow-lg shadow-gray-900/80">
+      <i class="pi pi-arrow-circle-right text-5xl"></i>
+    </button>
+  </form>
+
+  <footer>
+    <p-divider></p-divider>
+    <p class="text-center mt-4 flex flex-col">
+      <a routerLink="/ingresar" class="text-blue-400 font-semibold mt-2">INGRESAR</a>
+    </p>
+  </footer>
+</app-card>
