@@ -17,6 +17,7 @@ import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { PickListModule } from 'primeng/picklist';
+import { OrderListModule } from 'primeng/orderlist';
 
 const MODULES = [
   CardModule,
@@ -36,6 +37,7 @@ const MODULES = [
   DropdownModule,
   SelectButtonModule,
   PickListModule,
+  OrderListModule,
 ];
 
 @NgModule({

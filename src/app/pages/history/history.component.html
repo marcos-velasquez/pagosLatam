@@ -1,1 +1,28 @@
-<p>history works!</p>
+<section class="main__content flex flex-col flex-wrap justify-center items-center">
+  <p-dropdown [options]="categories" optionLabel="name" optionValue="value"></p-dropdown>
+
+  <p-orderList
+    [value]="products"
+    [listStyle]="{ 'max-height': '30rem' }"
+    header="Historial"
+    filterBy="name"
+    filterPlaceholder="Filter by name"
+    class="w-full max-w-5xl mx-auto mt-10"
+  >
+    <ng-template let-product pTemplate="item">
+      <div class="product-item">
+        <div class="image-container">
+          <img [src]="product.image" [alt]="product.name" class="product-image" />
+        </div>
+        <div class="product-list-detail">
+          <h5 class="p-mb-2">{{ product.name }}</h5>
+          <i class="pi pi-tag product-category-icon"></i>
+          <span class="product-category">{{ product.category }}</span>
+        </div>
+        <div class="product-list-action">
+          <h6 class="p-mb-2">${{ product.price }}</h6>
+        </div>
+      </div>
+    </ng-template>
+  </p-orderList>
+</section>
