@@ -16,6 +16,7 @@ import { ChipModule } from 'primeng/chip';
 import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { PickListModule } from 'primeng/picklist';
 
 const MODULES = [
   CardModule,
@@ -34,6 +35,7 @@ const MODULES = [
   DynamicDialogModule,
   DropdownModule,
   SelectButtonModule,
+  PickListModule,
 ];
 
 @NgModule({

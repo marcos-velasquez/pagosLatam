@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService } from 'primeng/dynamicdialog';
-import { RechargeBalanceComponent } from './components/recharge-balance/recharge-balance.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,11 +7,9 @@ import { RechargeBalanceComponent } from './components/recharge-balance/recharge
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private dialogService: DialogService) {}
+  constructor(private router: Router, private activeRoute: ActivatedRoute) {}
 
-  ngOnInit(): void {}
-
-  rechargeBalance() {
-    this.dialogService.open(RechargeBalanceComponent, { header: 'RECARGAR SALDO', width: '70%' });
+  ngOnInit(): void {
+    this.router.navigate(['categorias'], { relativeTo: this.activeRoute });
   }
 }

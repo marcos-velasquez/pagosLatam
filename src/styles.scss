@@ -13,3 +13,30 @@
   color: red;
   font-weight: 600;
 }
+.p-button {
+  color: white;
+}
+
+.scrollbar {
+  --scrollbar-track: initial;
+  --scrollbar-thumb: initial;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  overflow: overlay;
+}
+
+* {
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  @apply bg-gray-50 dark:bg-gray-900;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded-md;
+}

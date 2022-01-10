@@ -1,0 +1,52 @@
+<section class="p-5 flex flex-wrap justify-center gap-4">
+  <p-card styleClass="shadow-sm shadow-gray-800 w-[350px] h-[450px]">
+    <ng-template pTemplate="header">
+      <img alt="card-header" src="assets/images/background/authentication.jpg" />
+    </ng-template>
+
+    <section class="text-center">
+      <button
+        pButton
+        type="button"
+        label="RECARGAR SALDO"
+        class="p-button-secondary"
+        (click)="toRechargeBalance()"
+      ></button>
+      <p-divider></p-divider>
+    </section>
+  </p-card>
+
+  <p-card styleClass="shadow-sm shadow-gray-800 w-[350px] h-[450px]">
+    <ng-template pTemplate="header">
+      <img alt="card-header" src="assets/images/background/authentication.jpg" />
+    </ng-template>
+
+    <section class="text-center">
+      <button
+        pButton
+        type="button"
+        label="RECARGAR STREAMING"
+        class="p-button-secondary"
+        (click)="toRechargeStreaming()"
+      ></button>
+      <p-divider></p-divider>
+    </section>
+  </p-card>
+
+  <p-card styleClass="shadow-sm shadow-gray-800 w-[350px] h-[450px]">
+    <ng-template pTemplate="header">
+      <img alt="card-header" src="assets/images/background/authentication.jpg" />
+    </ng-template>
+
+    <section class="text-center">
+      <button
+        pButton
+        type="button"
+        label="RECARGAR VIDEOJUEGOS"
+        class="p-button-secondary"
+        (click)="toRechargeVideoGames()"
+      ></button>
+      <p-divider></p-divider>
+    </section>
+  </p-card>
+</section>

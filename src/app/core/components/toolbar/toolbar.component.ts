@@ -17,6 +17,16 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {
+        label: 'Establecer Teléfono',
+        icon: 'pi pi-phone',
+        command: () => {
+          this.auth
+            .logout()
+            .then(() => location.reload())
+            .catch((error) => this.toast.error(error.code));
+        },
+      },
+      {
         label: 'Salir',
         icon: 'pi pi-sign-out',
         command: () => {
