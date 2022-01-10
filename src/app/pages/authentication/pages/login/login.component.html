@@ -1,16 +1,26 @@
 <app-card>
-  <form class="w-full flex flex-col gap-6 justify-center items-center pt-5">
+  <form class="w-full flex flex-col gap-6 justify-center items-center pt-5" [formGroup]="form" (ngSubmit)="onSubmit()">
     <span class="p-float-label p-input-icon-left w-full max-w-sm">
       <i class="pi pi-user"></i>
-      <input id="email" type="text" pInputText class="w-full" />
+      <input id="email" type="text" pInputText class="w-full" formControlName="email" />
       <label for="email">Email</label>
+
+      <div class="error__messages" *ngIf="formValidatorService.isInvalid('email')">
+        <small *ngIf="form.get('email')?.hasError('email')">El email es inválido</small>
+        <small *ngIf="form.get('email')?.hasError('required')">El email es requerido</small>
+      </div>
     </span>
 
     <span class="p-float-label p-input-icon-left w-full max-w-sm">
       <i class="pi pi-key"></i>
-      <input id="password" type="password" pInputText class="w-full" />
+      <input id="password" type="password" pInputText class="w-full" formControlName="password" />
       <label for="password">Contraseña</label>
       <span appTogglePassword></span>
+
+      <div class="error__messages" *ngIf="formValidatorService.isInvalid('password')">
+        <small *ngIf="form.get('password')?.hasError('required')">Campo requerido</small>
+        <small *ngIf="form.get('password')?.hasError('minlength')">Mínimo de caracteres 8</small>
+      </div>
     </span>
 
     <button pButton type="submit" class="p-button-text shadow-lg shadow-gray-900/80">
@@ -22,9 +32,12 @@
     <p-divider></p-divider>
     <app-socials></app-socials>
     <p class="text-center mt-4 flex flex-col">
-      <a href="#" class="text-blue-400 font-semibold text-sm underline decoration-sky-600 decoration-wavy decoration-2"
-        >INGRESAR COMO INVITADO</a
+      <button
+        (click)="anonymously()"
+        class="text-blue-400 font-semibold text-sm underline decoration-sky-600 decoration-wavy decoration-2"
       >
+        INGRESAR COMO INVITADO
+      </button>
       <a routerLink="/registrarse" class="text-blue-400 font-semibold mt-2">REGISTRARSE</a>
     </p>
   </footer>
