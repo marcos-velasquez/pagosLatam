@@ -1,7 +1,5 @@
-export interface Charge {
-  name: string;
-  price: number;
-}
+import { Status } from '@core/enums/status.enum';
+import { Charge } from '@core/interfaces/charge.interface';
 
 export interface Balance {
   name: string;
@@ -10,4 +8,5 @@ export interface Balance {
   reference: string;
   photo: string;
   charge: Charge[];
+  status: Status;
 }
