@@ -17,18 +17,20 @@ import { User } from '../interfaces/user.interface';
   providedIn: 'root',
 })
 export class UsersService {
+  private basePath = 'users/';
+
   constructor(private firestore: Firestore) {}
 
   create(user: User) {
     const { id, ...data } = user;
-    return setDoc(doc(this.firestore, 'users', id), data);
+    return setDoc(doc(this.firestore, this.basePath, id), data);
   }
 
   getOne(id: string) {
-    return docData(doc(this.firestore, 'users/' + id), { idField: 'id' }) as Observable<User>;
+    return docData(doc(this.firestore, this.basePath + id), { idField: 'id' }) as Observable<User>;
   }
 
   update(id: string, data: Partial<User>) {
-    return updateDoc(doc(this.firestore, 'users/' + id), data);
+    return updateDoc(doc(this.firestore, this.basePath + id), data);
   }
 }

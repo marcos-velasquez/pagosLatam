@@ -1,42 +1,46 @@
 <p-card>
   <ng-template pTemplate="content">
-    <form class="p-fluid space-y-4">
+    <form class="p-fluid space-y-4" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="p-field max-w-xl mx-auto">
         <label>NOMBBRE</label>
-        <input type="text" required pInputText />
+        <input type="text" required pInputText formControlName="name" />
       </div>
 
-      <div class="p-field max-w-xl mx-auto">
-        <label>TELÉFONO</label>
-        <input type="number" required pInputText />
-      </div>
+      <div class="flex flex-wrap space-x-3 items-center justify-center mx-auto">
+        <div class="p-field max-w-xl flex flex-col space-y-3">
+          <label>TELÉFONO</label>
+          <app-input-phone formControlName="phoneNumber"></app-input-phone>
+        </div>
 
-      <div class="p-field max-w-xl mx-auto">
-        <label>TELÉFONO DESTINO</label>
-        <input type="number" required pInputText />
+        <div class="p-field max-w-xl flex flex-col space-y-3">
+          <label>TELÉFONO DESTINO</label>
+          <app-input-phone formControlName="phoneTarget"></app-input-phone>
+        </div>
       </div>
 
       <div class="p-field w-full text-center">
         <label>OPCIONES</label>
-        <app-pick-list></app-pick-list>
+        <app-pick-list formControlName="charge"></app-pick-list>
       </div>
 
       <div class="p-field flex items-center justify-around">
         <div class="max-w-xl">
           <label>REFERENCIA</label>
-          <input type="text" required pInputText />
+          <input type="text" required pInputText formControlName="reference" />
         </div>
 
         <div class="max-w-xl">
           <input
+            (change)="onChangeFile($event)"
             type="file"
+            accept="image/*"
             class="block mt-6 w-full text-sm text-yellow-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-900 file:text-white hover:file:bg-gray-800 transition-colors"
           />
         </div>
       </div>
 
       <div class="mt-10 max-w-xl mx-auto">
-        <button pButton type="button" label="ACEPTAR" class="p-button-secondary"></button>
+        <button pButton type="submit" label="ACEPTAR" class="p-button-secondary"></button>
       </div>
     </form>
   </ng-template>
