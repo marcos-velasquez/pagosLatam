@@ -1,4 +1,4 @@
 <app-toolbar *ngIf="isUserLogin"></app-toolbar>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+<app-footer *ngIf="isUserLogin"></app-footer>
 <p-toast position="top-right"></p-toast>

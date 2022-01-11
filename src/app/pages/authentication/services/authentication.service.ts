@@ -10,9 +10,11 @@ import {
   createUserWithEmailAndPassword,
   authState,
   getAuth,
+  UserCredential,
 } from '@angular/fire/auth';
-import { UsersService } from '../../../core/models/users/services/users.service';
-import { UserLogin, UserRegister } from '../../../core/models/users/interfaces/user.interface';
+import { UsersService } from '@core/models/users/services/users.service';
+import { UserLogin, UserRegister } from '@core/models/users/interfaces/user.interface';
+import { UserBuilder } from '@core/models/users/components/builders/user.builder';
 import { of, switchMap } from 'rxjs';
 
 @Injectable({
@@ -38,11 +40,30 @@ export class AuthenticationService {
   }
 
   withGoogle() {
-    return signInWithPopup(this.auth, new GoogleAuthProvider());
+    return new Promise((resolve, reject) => {
+      signInWithPopup(this.auth, new GoogleAuthProvider())
+        .then((res) => this.createIfNotExists(res).then(resolve).catch(reject))
+        .catch(reject);
+    });
+  }
+
+  private createIfNotExists(res: UserCredential) {
+    return new Promise((resolve, reject) => {
+      this.usersService.getOne(res.user.uid).subscribe({
+        next: (user) => {
+          user ?? this.usersService.create(new UserBuilder(res.user)).then(resolve).catch(reject);
+        },
+        error: reject,
+      });
+    });
   }
 
   withFacebook() {
-    return signInWithPopup(this.auth, new FacebookAuthProvider());
+    return new Promise((resolve, reject) => {
+      signInWithPopup(this.auth, new FacebookAuthProvider())
+        .then((res) => this.createIfNotExists(res).then(resolve).catch(reject))
+        .catch(reject);
+    });
   }
 
   withEmailAndPassword(user: UserLogin) {
@@ -56,19 +77,7 @@ export class AuthenticationService {
   register(user: UserRegister) {
     return new Promise((resolve, reject) => {
       createUserWithEmailAndPassword(this.auth, user.email, user.password)
-        .then((res) => {
-          if (res) {
-            this.usersService
-              .create({
-                email: res.user.email!,
-                phoneNumber: res.user.phoneNumber,
-                id: res.user.uid,
-                displayName: user.displayName!,
-              })
-              .then(resolve)
-              .catch(reject);
-          }
-        })
+        .then((res) => this.usersService.create(new UserBuilder(res.user)).then(resolve).catch(reject))
         .catch(reject);
     });
   }
