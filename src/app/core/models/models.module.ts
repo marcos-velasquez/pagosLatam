@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BalancesModule } from './balance/balances.module';
+import { BalancesModule } from './balances/balances.module';
 import { UsersModule } from './users/users.module';
 @NgModule({
   imports: [UsersModule, BalancesModule],
