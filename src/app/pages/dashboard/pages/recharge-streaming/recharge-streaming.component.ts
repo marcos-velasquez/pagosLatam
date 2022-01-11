@@ -13,6 +13,6 @@ export class RechargeStreamingComponent implements OnInit {
   ngOnInit(): void {}
 
   recharge() {
-    this.dialogService.open(Dialog, { header: 'RECARGAR STREAMING', width: '100%', height: '100%' });
+    this.dialogService.open(Dialog, { header: 'RECARGAR STREAMING', width: '80%', height: '100%' });
   }
 }

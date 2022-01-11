@@ -51,7 +51,7 @@ export class AuthenticationService {
     return new Promise((resolve, reject) => {
       this.usersService.getOne(res.user.uid).subscribe({
         next: (user) => {
-          user ?? this.usersService.create(new UserBuilder(res.user)).then(resolve).catch(reject);
+          user ? resolve(user) : this.usersService.create(new UserBuilder(res.user)).then(resolve).catch(reject);
         },
         error: reject,
       });
@@ -71,7 +71,11 @@ export class AuthenticationService {
   }
 
   anonymously() {
-    return signInAnonymously(this.auth);
+    return new Promise((resolve, reject) => {
+      signInAnonymously(this.auth)
+        .then((res) => this.createIfNotExists(res).then(resolve).catch(reject))
+        .catch(reject);
+    });
   }
 
   register(user: UserRegister) {

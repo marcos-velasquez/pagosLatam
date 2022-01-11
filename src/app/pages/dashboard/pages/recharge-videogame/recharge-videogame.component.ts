@@ -13,6 +13,6 @@ export class RechargeVideogameComponent implements OnInit {
   ngOnInit(): void {}
 
   recharge() {
-    this.dialogService.open(Dialog, { header: 'RECARGAR VIDEOJUEGO', width: '100%', height: '100%' });
+    this.dialogService.open(Dialog, { header: 'RECARGAR VIDEOJUEGO', width: '80%', height: '100%' });
   }
 }

@@ -13,6 +13,6 @@ export class RechargeBalanceComponent implements OnInit {
   ngOnInit(): void {}
 
   recharge() {
-    this.dialogService.open(Dialog, { header: 'RECARGAR SALDO', width: '100%', height: '100%' });
+    this.dialogService.open(Dialog, { header: 'RECARGAR SALDO', width: '80%', height: '100%' });
   }
 }
