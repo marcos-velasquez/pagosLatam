@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 import { AuthenticationService } from '@pages/authentication/services/authentication.service';
 import { ToastService } from '@core/components/prime-ng/services/toast.service';
+import { UpdatePhoneNumberComponent } from '@core/models/users/components/update-phone-number/update-phone-number.component';
+import { User } from '@core/models/users/interfaces/user.interface';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,21 +12,24 @@ import { ToastService } from '@core/components/prime-ng/services/toast.service';
   styleUrls: ['./toolbar.component.scss'],
 })
 export class ToolbarComponent implements OnInit {
+  user: User | null = null;
   showSidebar = false;
   items?: MenuItem[];
 
-  constructor(private auth: AuthenticationService, private toast: ToastService) {}
+  constructor(private auth: AuthenticationService, private toast: ToastService, private dialogService: DialogService) {}
 
   ngOnInit() {
+    this.auth.currentUser().subscribe((user) => (this.user = user));
     this.items = [
       {
-        label: 'Establecer Teléfono',
+        label: 'Actualizar Teléfono',
         icon: 'pi pi-phone',
         command: () => {
-          this.auth
-            .logout()
-            .then(() => location.reload())
-            .catch((error) => this.toast.error(error.code));
+          this.dialogService.open(UpdatePhoneNumberComponent, {
+            width: '70%',
+            height: '450px',
+            header: 'Actualizar Teléfono',
+          });
         },
       },
       {

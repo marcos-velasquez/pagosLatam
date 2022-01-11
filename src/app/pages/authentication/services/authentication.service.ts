@@ -9,17 +9,32 @@ import {
   signInAnonymously,
   createUserWithEmailAndPassword,
   authState,
+  getAuth,
 } from '@angular/fire/auth';
-import { UserLogin } from '../interfaces/user.interface';
+import { UsersService } from '../../../core/models/users/services/users.service';
+import { UserLogin, UserRegister } from '../../../core/models/users/interfaces/user.interface';
+import { of, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(@Optional() private auth: Auth) {}
+  constructor(@Optional() private auth: Auth, private usersService: UsersService) {}
 
   currentUser() {
-    return authState(this.auth);
+    return authState(this.auth).pipe(
+      switchMap((user) => {
+        if (user) {
+          return this.usersService.getOne(user.uid);
+        } else {
+          return of(null);
+        }
+      })
+    );
+  }
+
+  get id() {
+    return getAuth().currentUser?.uid;
   }
 
   withGoogle() {
@@ -38,8 +53,24 @@ export class AuthenticationService {
     return signInAnonymously(this.auth);
   }
 
-  register(user: UserLogin) {
-    return createUserWithEmailAndPassword(this.auth, user.email, user.password);
+  register(user: UserRegister) {
+    return new Promise((resolve, reject) => {
+      createUserWithEmailAndPassword(this.auth, user.email, user.password)
+        .then((res) => {
+          if (res) {
+            this.usersService
+              .create({
+                email: res.user.email!,
+                phoneNumber: res.user.phoneNumber,
+                id: res.user.uid,
+                displayName: user.displayName!,
+              })
+              .then(resolve)
+              .catch(reject);
+          }
+        })
+        .catch(reject);
+    });
   }
 
   logout() {

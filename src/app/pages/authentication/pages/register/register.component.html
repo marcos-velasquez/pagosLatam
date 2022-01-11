@@ -2,6 +2,16 @@
   <form class="w-full flex flex-col gap-6 justify-center items-center pt-5" [formGroup]="form!" (ngSubmit)="onSubmit()">
     <span class="p-float-label p-input-icon-left w-full max-w-sm">
       <i class="pi pi-user"></i>
+      <input id="email" type="text" pInputText class="w-full" formControlName="displayName" />
+      <label for="email">Nombre</label>
+
+      <div class="error__messages" *ngIf="formValidatorService.isInvalid('displayName')">
+        <small *ngIf="form.get('displayName')?.hasError('displayName')">El email es inválido</small>
+      </div>
+    </span>
+
+    <span class="p-float-label p-input-icon-left w-full max-w-sm">
+      <i class="pi pi-user"></i>
       <input id="email" type="text" pInputText class="w-full" formControlName="email" />
       <label for="email">Email</label>
 

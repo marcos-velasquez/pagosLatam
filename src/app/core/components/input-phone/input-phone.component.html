@@ -1,0 +1,14 @@
+<ngx-intl-tel-input
+  pInputText
+  [cssClass]="'bg-transparent outline-none'"
+  [preferredCountries]="[CountryISO.Venezuela]"
+  [enableAutoCountrySelect]="true"
+  [enablePlaceholder]="true"
+  [searchCountryFlag]="true"
+  [phoneValidation]="true"
+  [separateDialCode]="true"
+  [numberFormat]="PhoneNumberFormat.National"
+  [(ngModel)]="currentValue"
+  (ngModelChange)="onChange()"
+>
+</ngx-intl-tel-input>
