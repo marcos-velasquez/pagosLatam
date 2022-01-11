@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BalancesService } from '@core/models/balance/services/balances.service';
 import { StorageService } from '@core/services/storage.service';
 import { ToastService } from '@core/components/prime-ng/services/toast.service';
+import { AuthenticationService } from '@pages/authentication/services/authentication.service';
 
 @Component({
   selector: 'app-recharge-balance',
@@ -18,7 +19,8 @@ export class RechargeBalanceComponent implements OnInit {
     private fb: FormBuilder,
     private balanceService: BalancesService,
     private storageService: StorageService,
-    private toast: ToastService
+    private toast: ToastService,
+    private auth: AuthenticationService
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +31,10 @@ export class RechargeBalanceComponent implements OnInit {
       reference: ['', Validators.required],
       photo: ['', Validators.required],
       charge: [[], Validators.required],
+    });
+
+    this.auth.currentUser().subscribe((user) => {
+      this.form?.patchValue({ name: user?.displayName, phoneNumber: user?.phoneNumber });
     });
 
     this.setInfo();
