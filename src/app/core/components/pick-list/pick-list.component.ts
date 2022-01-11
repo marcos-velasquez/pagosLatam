@@ -1,6 +1,6 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Charge } from '@core/models/balance/interfaces/balance.interface';
+import { Charge } from '@core/interfaces/charge.interface';
 
 @Component({
   selector: 'app-pick-list',
