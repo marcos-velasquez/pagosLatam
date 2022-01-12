@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
-import { RechargeStreamingComponent as Dialog } from '@pages/dashboard/components/recharge-streaming/recharge-streaming.component';
+import { RechargeStreamingComponent as Dialog } from '@core/models/streaming/components/recharge-streaming/recharge-streaming.component';
 
 @Component({
   selector: 'app-recharge-streaming',
