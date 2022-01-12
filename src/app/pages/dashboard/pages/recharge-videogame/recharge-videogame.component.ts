@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService } from '@core/components/prime-ng/services/dialog.service';
 import { RechargeVideogameComponent as Dialog } from '@pages/dashboard/components/recharge-videogame/recharge-videogame.component';
 
 @Component({
@@ -13,6 +13,6 @@ export class RechargeVideogameComponent implements OnInit {
   ngOnInit(): void {}
 
   recharge() {
-    this.dialogService.open(Dialog, { header: 'RECARGAR VIDEOJUEGO', width: '80%', height: '100%' });
+    this.dialogService.open(Dialog, 'RECARGAR VIDEOJUEGOS');
   }
 }

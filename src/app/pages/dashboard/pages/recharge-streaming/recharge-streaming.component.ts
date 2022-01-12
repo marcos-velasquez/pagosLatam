@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService } from '@core/components/prime-ng/services/dialog.service';
 import { RechargeStreamingComponent as Dialog } from '@models/streaming/components/recharge-streaming/recharge-streaming.component';
 
 @Component({
@@ -13,6 +13,6 @@ export class RechargeStreamingComponent implements OnInit {
   ngOnInit(): void {}
 
   recharge() {
-    this.dialogService.open(Dialog, { header: 'RECARGAR STREAMING', width: '80%', height: '100%' });
+    this.dialogService.open(Dialog, 'RECARGAR STREAMING');
   }
 }

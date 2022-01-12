@@ -6,6 +6,7 @@ import { ToastService } from '@core/components/prime-ng/services/toast.service';
 import { AuthenticationService } from '@pages/authentication/services/authentication.service';
 import { Recharge } from '@app/models/core/components/recharge.component';
 import { Balance } from '../../interfaces/balance.interface';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-recharge-balance',
@@ -18,9 +19,10 @@ export class RechargeBalanceComponent extends Recharge<Balance> implements OnIni
     override storageService: StorageService,
     override toast: ToastService,
     override auth: AuthenticationService,
+    override confirmationService: ConfirmationService,
     balancesService: BalancesService
   ) {
-    super(storageService, auth, balancesService, toast);
+    super(storageService, auth, balancesService, toast, confirmationService);
   }
 
   ngOnInit(): void {

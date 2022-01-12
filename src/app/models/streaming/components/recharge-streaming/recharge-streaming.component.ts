@@ -4,6 +4,7 @@ import { Recharge } from '@app/models/core/components/recharge.component';
 import { ToastService } from '@core/components/prime-ng/services/toast.service';
 import { StorageService } from '@core/services/storage.service';
 import { AuthenticationService } from '@pages/authentication/services/authentication.service';
+import { ConfirmationService } from 'primeng/api';
 import { Streaming } from '../../interfaces/streaming.interface';
 import { StreamingService } from '../../services/streaming.service';
 
@@ -18,9 +19,10 @@ export class RechargeStreamingComponent extends Recharge<Streaming> implements O
     override storageService: StorageService,
     override toast: ToastService,
     override auth: AuthenticationService,
+    override confirmationService: ConfirmationService,
     streamingService: StreamingService
   ) {
-    super(storageService, auth, streamingService, toast);
+    super(storageService, auth, streamingService, toast, confirmationService);
   }
 
   ngOnInit(): void {

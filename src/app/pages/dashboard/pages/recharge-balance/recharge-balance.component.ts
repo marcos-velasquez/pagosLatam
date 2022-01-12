@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService } from '@core/components/prime-ng/services/dialog.service';
 import { RechargeBalanceComponent as Dialog } from '@models/balances/components/recharge-balance/recharge-balance.component';
 
 @Component({
@@ -13,6 +13,6 @@ export class RechargeBalanceComponent implements OnInit {
   ngOnInit(): void {}
 
   recharge() {
-    this.dialogService.open(Dialog, { header: 'RECARGAR SALDO', width: '80%', height: '100%' });
+    this.dialogService.open(Dialog, 'RECARGAR SALDO');
   }
 }

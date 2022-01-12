@@ -3,6 +3,7 @@ import { ToastService } from '@core/components/prime-ng/services/toast.service';
 import { StorageService } from '@core/services/storage.service';
 import { AuthenticationService } from '@pages/authentication/services/authentication.service';
 import { RechargeService } from '../interface/recharge-service.interface';
+import { ConfirmationService } from 'primeng/api';
 
 export abstract class Recharge<T> {
   form: FormGroup;
@@ -11,7 +12,8 @@ export abstract class Recharge<T> {
     protected storageService: StorageService,
     protected auth: AuthenticationService,
     protected service: RechargeService<T>,
-    protected toast: ToastService
+    protected toast: ToastService,
+    protected confirmationService: ConfirmationService
   ) {}
 
   patchDefaultValues(): void {
@@ -22,14 +24,23 @@ export abstract class Recharge<T> {
 
   async onSubmit() {
     if (this.form?.valid) {
-      try {
-        const path = await this.storageService.upload(this.form?.value.photo);
-        this.form.value.photo = path;
-        await this.service.create(this.form.value);
-        this.toast.success('PEDIDO REALIZADO CORRECTAMENTE');
-      } catch (error: any) {
-        this.toast.error(error.code);
-      }
+      this.confirmationService.confirm({
+        message: '¿ESTÁS SEGUR@?',
+        acceptLabel: 'SI',
+        rejectLabel: 'NO',
+        accept: () => this.accept(),
+      });
+    }
+  }
+
+  private async accept() {
+    try {
+      const path = await this.storageService.upload(this.form?.value.photo);
+      this.form.value.photo = path;
+      await this.service.create(this.form.value);
+      this.toast.success('PEDIDO REALIZADO CORRECTAMENTE');
+    } catch (error: any) {
+      this.toast.error(error.code);
     }
   }
 

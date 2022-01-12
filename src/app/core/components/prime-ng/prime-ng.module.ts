@@ -6,7 +6,7 @@ import { DividerModule } from 'primeng/divider';
 import { RippleModule } from 'primeng/ripple';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToolbarModule } from 'primeng/toolbar';
 import { AvatarModule } from 'primeng/avatar';
 import { SidebarModule } from 'primeng/sidebar';
@@ -18,6 +18,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { PickListModule } from 'primeng/picklist';
 import { OrderListModule } from 'primeng/orderlist';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 const MODULES = [
   CardModule,
@@ -38,10 +39,11 @@ const MODULES = [
   SelectButtonModule,
   PickListModule,
   OrderListModule,
+  ConfirmDialogModule,
 ];
 
 @NgModule({
-  providers: [MessageService, DialogService],
+  providers: [MessageService, DialogService, ConfirmationService],
   imports: MODULES,
   exports: [...MODULES],
 })
