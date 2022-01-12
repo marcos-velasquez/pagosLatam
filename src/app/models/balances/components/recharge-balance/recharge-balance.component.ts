@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BalancesService } from '@core/models/balances/services/balances.service';
+import { BalancesService } from '@models/balances/services/balances.service';
 import { StorageService } from '@core/services/storage.service';
 import { ToastService } from '@core/components/prime-ng/services/toast.service';
 import { AuthenticationService } from '@pages/authentication/services/authentication.service';

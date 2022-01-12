@@ -1,4 +1,4 @@
-import { User } from '@core/models/users/interfaces/user.interface';
+import { User } from '@models/users/interfaces/user.interface';
 
 export class UserBuilder implements User {
   id: string;

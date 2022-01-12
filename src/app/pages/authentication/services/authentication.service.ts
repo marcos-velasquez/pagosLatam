@@ -12,9 +12,9 @@ import {
   getAuth,
   UserCredential,
 } from '@angular/fire/auth';
-import { UsersService } from '@core/models/users/services/users.service';
-import { UserLogin, UserRegister } from '@core/models/users/interfaces/user.interface';
-import { UserBuilder } from '@core/models/users/components/builders/user.builder';
+import { UsersService } from '@models/users/services/users.service';
+import { UserLogin, UserRegister } from '@models/users/interfaces/user.interface';
+import { UserBuilder } from '@app/models/users/services/user-builder.service';
 import { of, switchMap } from 'rxjs';
 
 @Injectable({

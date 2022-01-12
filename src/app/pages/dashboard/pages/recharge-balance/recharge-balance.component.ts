@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
-import { RechargeBalanceComponent as Dialog } from '@core/models/balances/components/recharge-balance/recharge-balance.component';
+import { RechargeBalanceComponent as Dialog } from '@models/balances/components/recharge-balance/recharge-balance.component';
 
 @Component({
   selector: 'app-recharge-balance',

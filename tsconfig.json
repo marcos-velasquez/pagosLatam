@@ -9,6 +9,7 @@
       "@pages/*": ["src/app/pages/*"],
       "@core/*": ["src/app/core/*"],
       "@app/*": ["src/app/*"],
+      "@models/*": ["src/app/models/*"],
       "@environment": ["environments/environment"]
     },
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '@pages/authentication/services/authentication.service';
-import { UsersService } from '@core/models/users/services/users.service';
+import { UsersService } from '@models/users/services/users.service';
 import { ToastService } from '@core/components/prime-ng/services/toast.service';
 
 @Component({

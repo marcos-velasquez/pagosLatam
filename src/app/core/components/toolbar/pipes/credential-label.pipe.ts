@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { User } from '@core/models/users/interfaces/user.interface';
+import { User } from '@models/users/interfaces/user.interface';
 
 @Pipe({
   name: 'credentialLabel',
