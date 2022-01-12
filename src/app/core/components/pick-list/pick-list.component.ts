@@ -1,6 +1,6 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Charge } from '@app/models/core/interface/charge.interface';
+import { Charge } from '@app/models/core/interfaces/charge.interface';
 import { RegisterValueAccessor } from '@core/helpers/register-value-accessor.helper';
 
 @Component({

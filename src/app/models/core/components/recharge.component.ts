@@ -2,7 +2,7 @@ import { FormGroup } from '@angular/forms';
 import { ToastService } from '@core/components/prime-ng/services/toast.service';
 import { StorageService } from '@core/services/storage.service';
 import { AuthenticationService } from '@pages/authentication/services/authentication.service';
-import { RechargeService } from '../interface/recharge-service.interface';
+import { RechargeService } from '../interfaces/recharge-service.interface';
 import { ConfirmationService } from 'primeng/api';
 
 export abstract class Recharge<T> {

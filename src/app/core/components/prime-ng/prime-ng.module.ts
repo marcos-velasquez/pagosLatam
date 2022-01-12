@@ -12,13 +12,16 @@ import { AvatarModule } from 'primeng/avatar';
 import { SidebarModule } from 'primeng/sidebar';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { TabMenuModule } from 'primeng/tabmenu';
-import { ChipModule } from 'primeng/chip';
 import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { PickListModule } from 'primeng/picklist';
-import { OrderListModule } from 'primeng/orderlist';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TableModule } from 'primeng/table';
+import { ImageModule } from 'primeng/image';
+import { TagModule } from 'primeng/tag';
+import { DialogModule } from 'primeng/dialog';
+import { OrderListModule } from 'primeng/orderlist';
 
 const MODULES = [
   CardModule,
@@ -33,13 +36,16 @@ const MODULES = [
   SidebarModule,
   SplitButtonModule,
   TabMenuModule,
-  ChipModule,
   DynamicDialogModule,
   DropdownModule,
   SelectButtonModule,
   PickListModule,
-  OrderListModule,
   ConfirmDialogModule,
+  TableModule,
+  ImageModule,
+  TagModule,
+  DialogModule,
+  OrderListModule,
 ];
 
 @NgModule({

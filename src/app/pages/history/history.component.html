@@ -1,28 +1,56 @@
-<section class="main__content flex flex-col flex-wrap justify-center items-center">
-  <p-dropdown [options]="categories" optionLabel="name" optionValue="value"></p-dropdown>
+<section class="main__content flex flex-col flex-wrap justify-start items-center py-10">
+  <p-dropdown [options]="categories" optionLabel="name" optionValue="value" (onChange)="search($event)"></p-dropdown>
+  <app-global-search *ngIf="showGlobalSearch" (onSearch)="setData($event)"></app-global-search>
 
-  <p-orderList
-    [value]="products"
-    [listStyle]="{ 'max-height': '30rem' }"
-    header="Historial"
-    filterBy="name"
-    filterPlaceholder="Filter by name"
-    class="w-full max-w-5xl mx-auto mt-10"
+  <p-table
+    [value]="data"
+    responsiveLayout="scroll"
+    [paginator]="true"
+    [rows]="10"
+    [responsive]="true"
+    [columns]="cols"
+    class="w-full px-10 mt-10"
   >
-    <ng-template let-product pTemplate="item">
-      <div class="product-item">
-        <div class="image-container">
-          <img [src]="product.image" [alt]="product.name" class="product-image" />
-        </div>
-        <div class="product-list-detail">
-          <h5 class="p-mb-2">{{ product.name }}</h5>
-          <i class="pi pi-tag product-category-icon"></i>
-          <span class="product-category">{{ product.category }}</span>
-        </div>
-        <div class="product-list-action">
-          <h6 class="p-mb-2">${{ product.price }}</h6>
-        </div>
-      </div>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="name">NOMBRE<p-sortIcon></p-sortIcon></th>
+        <th pSortableColumn="phoneNumber">TELÉFONO<p-sortIcon></p-sortIcon></th>
+        <th [pSortableColumn]="col.field" *ngFor="let col of cols">
+          {{ col.header }}
+          <p-sortIcon></p-sortIcon>
+        </th>
+        <th pSortableColumn="reference">REFERENCIA<p-sortIcon></p-sortIcon></th>
+        <th pSortableColumn="photo">FOTO<p-sortIcon></p-sortIcon></th>
+        <th pSortableColumn="status">ESTADO<p-sortIcon></p-sortIcon></th>
+        <th style="width: 4em"></th>
+      </tr>
     </ng-template>
-  </p-orderList>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td>
+          {{ rowData.name }}
+        </td>
+        <td>
+          {{ rowData.phoneNumber }}
+        </td>
+        <td *ngFor="let col of columns">
+          {{ rowData[col.field] }}
+        </td>
+        <td>
+          {{ rowData.reference }}
+        </td>
+        <td>
+          <p-image [src]="rowData.photo" [alt]="rowData.name" width="70" [preview]="true"></p-image>
+        </td>
+        <td>
+          <p-tag styleClass="p-mr-2" severity="success" [value]="rowData.status"></p-tag>
+        </td>
+        <td>
+          <button type="button" pButton icon="pi pi-search" (click)="selectProduct(rowData)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </section>
+
+<app-list-charge [charge]="charge"></app-list-charge>

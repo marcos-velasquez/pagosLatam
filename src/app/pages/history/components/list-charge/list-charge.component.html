@@ -1,0 +1,14 @@
+<p-dialog header="COMPRA" [(visible)]="display" [style]="{ width: '100vw', maxWidth: '700px' }">
+  <p-orderList [value]="charge" [listStyle]="{ 'max-height': '30rem' }" header="LISTA DE PEDIDOS">
+    <ng-template let-product pTemplate="item">
+      <div class="product-item flex justify-between">
+        <div class="product-list-detail">
+          <h5 class="p-mb-2">{{ product.name }}</h5>
+        </div>
+        <div class="product-list-action">
+          <h6 class="p-mb-2">${{ product.price }}</h6>
+        </div>
+      </div>
+    </ng-template>
+  </p-orderList>
+</p-dialog>

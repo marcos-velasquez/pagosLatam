@@ -1,0 +1,16 @@
+<h5 class="mt-7 text-center font-semibold">BUSQUEDAD GLOBAL</h5>
+<form class="p-fluid space-y-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="flex flex-wrap space-x-3 items-center justify-center mx-auto">
+    <div class="p-field max-w-xl mx-auto">
+      <label>IDENTIFICADOR</label>
+      <input type="text" required pInputText formControlName="playerId" />
+    </div>
+
+    <div class="p-field max-w-xl flex flex-col space-y-3">
+      <label>TELÉFONO</label>
+      <app-input-phone formControlName="phoneNumber"></app-input-phone>
+    </div>
+
+    <button pButton type="submit" icon="pi pi-search" class="p-button-rounded p-button-text"></button>
+  </div>
+</form>

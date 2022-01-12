@@ -1,5 +1,5 @@
 import { Status } from '@app/models/core/enums/status.enum';
-import { Charge } from '@app/models/core/interface/charge.interface';
+import { Charge } from '@app/models/core/interfaces/charge.interface';
 
 export interface RechargeModel {
   status: Status;
@@ -8,4 +8,5 @@ export interface RechargeModel {
   photo: string;
   charge: Charge[];
   phoneNumber: string;
+  userId?: string;
 }
