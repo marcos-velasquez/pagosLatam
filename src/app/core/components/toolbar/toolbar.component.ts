@@ -3,7 +3,7 @@ import { MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AuthenticationService } from '@pages/authentication/services/authentication.service';
 import { ToastService } from '@core/components/prime-ng/services/toast.service';
-import { UpdatePhoneNumberComponent } from '@core/models/users/components/update-phone-number/update-phone-number.component';
+import { ProfileComponent } from '@core/models/users/components/profile/profile.component';
 import { User } from '@core/models/users/interfaces/user.interface';
 
 @Component({
@@ -22,13 +22,13 @@ export class ToolbarComponent implements OnInit {
     this.auth.currentUser().subscribe((user) => (this.user = user));
     this.items = [
       {
-        label: 'Actualizar Teléfono',
-        icon: 'pi pi-phone',
+        label: 'Perfil',
+        icon: 'pi pi-user-edit',
         command: () => {
-          this.dialogService.open(UpdatePhoneNumberComponent, {
+          this.dialogService.open(ProfileComponent, {
             width: '70%',
             height: '450px',
-            header: 'Actualizar Teléfono',
+            header: 'PERFIL',
           });
         },
       },

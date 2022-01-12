@@ -5,11 +5,11 @@ import { UsersService } from '@core/models/users/services/users.service';
 import { ToastService } from '@core/components/prime-ng/services/toast.service';
 
 @Component({
-  selector: 'app-update-phone-number',
-  templateUrl: './update-phone-number.component.html',
-  styleUrls: ['./update-phone-number.component.scss'],
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss'],
 })
-export class UpdatePhoneNumberComponent implements OnInit {
+export class ProfileComponent implements OnInit {
   form?: FormGroup;
 
   constructor(
@@ -20,9 +20,9 @@ export class UpdatePhoneNumberComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.form = this.fb.group({ phoneNumber: ['', [Validators.required]] });
+    this.form = this.fb.group({ phoneNumber: ['', [Validators.required]], displayName: ['', [Validators.required]] });
     this.auth.currentUser().subscribe((user) => {
-      this.form?.patchValue({ phoneNumber: user?.phoneNumber });
+      this.form?.patchValue({ phoneNumber: user?.phoneNumber, displayName: user?.displayName });
     });
   }
 
@@ -30,7 +30,7 @@ export class UpdatePhoneNumberComponent implements OnInit {
     if (this.form?.valid) {
       this.usersService
         .update(this.auth.id!, this.form?.value)
-        .then(() => this.toast.info('TELÉFONO ACTUALIADO'))
+        .then(() => this.toast.info('PERFIL ACTUALIADO'))
         .catch((error) => this.toast.error(error.code));
     }
   }
