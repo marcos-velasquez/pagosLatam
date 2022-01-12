@@ -25,7 +25,7 @@ export abstract class Recharge<T> {
   async onSubmit() {
     if (this.form?.valid) {
       this.confirmationService.confirm({
-        message: '¿ESTÁS SEGUR@?',
+        header: 'CONFIRMAR',
         acceptLabel: 'SI',
         rejectLabel: 'NO',
         accept: () => this.accept(),

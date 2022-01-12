@@ -67,3 +67,8 @@
   @apply h-screen w-screen md:w-10/12 md:h-5/6;
   max-height: 100% !important;
 }
+
+p-confirmdialog .p-dialog {
+  height: 150px !important;
+  width: 300px !important;
+}
