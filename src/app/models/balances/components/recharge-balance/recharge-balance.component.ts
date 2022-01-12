@@ -7,6 +7,7 @@ import { AuthenticationService } from '@pages/authentication/services/authentica
 import { Recharge } from '@app/models/core/components/recharge.component';
 import { Balance } from '../../interfaces/balance.interface';
 import { ConfirmationService } from 'primeng/api';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-recharge-balance',
@@ -20,9 +21,10 @@ export class RechargeBalanceComponent extends Recharge<Balance> implements OnIni
     override toast: ToastService,
     override auth: AuthenticationService,
     override confirmationService: ConfirmationService,
+    override ref: DynamicDialogRef,
     balancesService: BalancesService
   ) {
-    super(storageService, auth, balancesService, toast, confirmationService);
+    super(storageService, auth, balancesService, toast, confirmationService, ref);
   }
 
   ngOnInit(): void {

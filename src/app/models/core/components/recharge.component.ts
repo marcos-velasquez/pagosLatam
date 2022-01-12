@@ -1,4 +1,5 @@
 import { FormGroup } from '@angular/forms';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ToastService } from '@core/components/prime-ng/services/toast.service';
 import { StorageService } from '@core/services/storage.service';
 import { AuthenticationService } from '@pages/authentication/services/authentication.service';
@@ -13,7 +14,8 @@ export abstract class Recharge<T> {
     protected auth: AuthenticationService,
     protected service: RechargeService<T>,
     protected toast: ToastService,
-    protected confirmationService: ConfirmationService
+    protected confirmationService: ConfirmationService,
+    protected ref: DynamicDialogRef
   ) {}
 
   patchDefaultValues(): void {
@@ -38,6 +40,7 @@ export abstract class Recharge<T> {
       const path = await this.storageService.upload(this.form?.value.photo);
       this.form.value.photo = path;
       await this.service.create(this.form.value);
+      this.ref.close();
       this.toast.success('PEDIDO REALIZADO CORRECTAMENTE');
     } catch (error: any) {
       this.toast.error(error.code);

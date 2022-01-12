@@ -5,6 +5,7 @@ import { ToastService } from '@core/components/prime-ng/services/toast.service';
 import { StorageService } from '@core/services/storage.service';
 import { AuthenticationService } from '@pages/authentication/services/authentication.service';
 import { ConfirmationService } from 'primeng/api';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Streaming } from '../../interfaces/streaming.interface';
 import { StreamingService } from '../../services/streaming.service';
 
@@ -20,9 +21,10 @@ export class RechargeStreamingComponent extends Recharge<Streaming> implements O
     override toast: ToastService,
     override auth: AuthenticationService,
     override confirmationService: ConfirmationService,
+    override ref: DynamicDialogRef,
     streamingService: StreamingService
   ) {
-    super(storageService, auth, streamingService, toast, confirmationService);
+    super(storageService, auth, streamingService, toast, confirmationService, ref);
   }
 
   ngOnInit(): void {

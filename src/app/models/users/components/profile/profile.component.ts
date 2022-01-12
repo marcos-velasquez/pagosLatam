@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '@pages/authentication/services/authentication.service';
 import { UsersService } from '@models/users/services/users.service';
 import { ToastService } from '@core/components/prime-ng/services/toast.service';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,8 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder,
     private usersService: UsersService,
     private auth: AuthenticationService,
-    private toast: ToastService
+    private toast: ToastService,
+    private ref: DynamicDialogRef
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +32,10 @@ export class ProfileComponent implements OnInit {
     if (this.form?.valid) {
       this.usersService
         .update(this.auth.id!, this.form?.value)
-        .then(() => this.toast.info('PERFIL ACTUALIADO'))
+        .then(() => {
+          this.ref.close();
+          this.toast.info('PERFIL ACTUALIADO');
+        })
         .catch((error) => this.toast.error(error.code));
     }
   }
