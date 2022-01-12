@@ -1,16 +1,14 @@
 <p-card>
   <ng-template pTemplate="content">
     <form class="p-fluid space-y-4" [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="flex flex-wrap space-x-3 items-center justify-center mx-auto">
-        <div class="p-field max-w-xl flex flex-col space-y-3">
-          <label>NOMBBRE</label>
-          <input type="text" required pInputText formControlName="displayName" />
-        </div>
+      <div class="p-field max-w-xl mx-auto">
+        <label>NOMBBRE</label>
+        <input type="text" required pInputText formControlName="displayName" />
+      </div>
 
-        <div class="p-field max-w-xl flex flex-col space-y-3">
-          <label>TELÉFONO</label>
-          <app-input-phone formControlName="phoneNumber" class="block mt-2 mb-10"></app-input-phone>
-        </div>
+      <div class="p-field max-w-xl mx-auto">
+        <label>TELÉFONO</label>
+        <app-input-phone formControlName="phoneNumber"></app-input-phone>
       </div>
 
       <div class="mt-10 max-w-xl mx-auto">

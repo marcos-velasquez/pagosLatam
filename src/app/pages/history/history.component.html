@@ -9,8 +9,27 @@
     [rows]="10"
     [responsive]="true"
     [columns]="cols"
-    class="w-full px-10 mt-10"
+    [rowHover]="true"
+    [globalFilterFields]="['name', 'phoneNumber', 'status', 'reference']"
+    [resizableColumns]="true"
+    columnResizeMode="expand"
+    class="w-full md:px-10 px-3 mt-10"
+    #dt
   >
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex">
+        <span class="p-input-icon-left p-ml-auto">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal($event.target['value'], 'contains')"
+            placeholder="Search keyword"
+          />
+        </span>
+      </div>
+    </ng-template>
+
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="name">NOMBRE<p-sortIcon></p-sortIcon></th>
@@ -46,7 +65,7 @@
           <p-tag styleClass="p-mr-2" severity="success" [value]="rowData.status"></p-tag>
         </td>
         <td>
-          <button type="button" pButton icon="pi pi-search" (click)="selectProduct(rowData)"></button>
+          <button type="button" pButton icon="pi pi-shopping-bag" (click)="selectProduct(rowData)"></button>
         </td>
       </tr>
     </ng-template>

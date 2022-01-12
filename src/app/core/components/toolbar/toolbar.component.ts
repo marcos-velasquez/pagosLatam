@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { DialogService } from 'primeng/dynamicdialog';
 import { AuthenticationService } from '@pages/authentication/services/authentication.service';
 import { ToastService } from '@core/components/prime-ng/services/toast.service';
 import { ProfileComponent } from '@models/users/components/profile/profile.component';
 import { User } from '@models/users/interfaces/user.interface';
+import { DialogService } from '../prime-ng/services/dialog.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -25,11 +25,7 @@ export class ToolbarComponent implements OnInit {
         label: 'Perfil',
         icon: 'pi pi-user-edit',
         command: () => {
-          this.dialogService.open(ProfileComponent, {
-            width: '70%',
-            height: '450px',
-            header: 'PERFIL',
-          });
+          this.dialogService.open(ProfileComponent, 'PERFIL');
         },
       },
       {

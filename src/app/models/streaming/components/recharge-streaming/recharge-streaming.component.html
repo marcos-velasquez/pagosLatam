@@ -1,24 +1,22 @@
 <p-card>
   <ng-template pTemplate="content">
     <form class="p-fluid space-y-4" [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="flex flex-wrap space-x-3 items-center justify-center mx-auto">
-        <div class="p-field max-w-xl mx-auto">
-          <label>NOMBBRE</label>
-          <input type="text" required pInputText formControlName="name" />
-        </div>
-
-        <div class="p-field max-w-xl flex flex-col space-y-3">
-          <label>TELÉFONO</label>
-          <app-input-phone formControlName="phoneNumber"></app-input-phone>
-        </div>
+      <div class="p-field max-w-xl mx-auto">
+        <label>NOMBBRE</label>
+        <input type="text" required pInputText formControlName="name" />
       </div>
 
-      <div class="p-field w-full text-center">
+      <div class="p-field max-w-xl mx-auto">
+        <label>TELÉFONO</label>
+        <app-input-phone formControlName="phoneNumber"></app-input-phone>
+      </div>
+
+      <div class="p-field w-full md:text-center">
         <label>OPCIONES</label>
         <app-pick-list formControlName="charge"></app-pick-list>
       </div>
 
-      <div class="p-field flex items-center justify-around">
+      <div class="p-field flex flex-col lg:flex-row items-center justify-around">
         <div class="max-w-xl">
           <label>REFERENCIA</label>
           <input type="text" required pInputText formControlName="reference" />

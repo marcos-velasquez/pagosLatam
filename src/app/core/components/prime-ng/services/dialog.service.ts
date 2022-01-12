@@ -10,8 +10,6 @@ export class DialogService {
   open(component: Type<any>, header: string) {
     this.service.open(component, {
       header,
-      width: '80%',
-      height: '100%',
       baseZIndex: 100,
       autoZIndex: false,
     });
