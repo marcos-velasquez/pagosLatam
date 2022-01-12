@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Recharge } from '@app/models/core/components/recharge.component';
 import { ToastService } from '@core/components/prime-ng/services/toast.service';
 import { StorageService } from '@core/services/storage.service';
 import { AuthenticationService } from '@pages/authentication/services/authentication.service';
+import { Streaming } from '../../interfaces/streaming.interface';
 import { StreamingService } from '../../services/streaming.service';
 
 @Component({
@@ -10,18 +12,16 @@ import { StreamingService } from '../../services/streaming.service';
   templateUrl: './recharge-streaming.component.html',
   styleUrls: ['./recharge-streaming.component.scss'],
 })
-export class RechargeStreamingComponent implements OnInit {
-  form?: FormGroup;
-  operators?: { name: string; value: string }[];
-  amounts?: { name: string; value: number }[];
-
+export class RechargeStreamingComponent extends Recharge<Streaming> implements OnInit {
   constructor(
     private fb: FormBuilder,
-    private streamingService: StreamingService,
-    private storageService: StorageService,
-    private toast: ToastService,
-    private auth: AuthenticationService
-  ) {}
+    override storageService: StorageService,
+    override toast: ToastService,
+    override auth: AuthenticationService,
+    streamingService: StreamingService
+  ) {
+    super(storageService, auth, streamingService, toast);
+  }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -32,27 +32,6 @@ export class RechargeStreamingComponent implements OnInit {
       charge: [[], Validators.required],
     });
 
-    this.auth.currentUser().subscribe((user) => {
-      this.form?.patchValue({ name: user?.displayName, phoneNumber: user?.phoneNumber });
-    });
-  }
-
-  async onSubmit() {
-    if (this.form?.valid) {
-      try {
-        const path = await this.storageService.upload(this.form?.value.photo);
-        this.form.value.photo = path;
-        await this.streamingService.create(this.form.value);
-        this.toast.success('PEDIDO REALIZADO CORRECTAMENTE');
-      } catch (error: any) {
-        this.toast.error(error.code);
-      }
-    }
-  }
-
-  onChangeFile(event: any) {
-    if (event.target.files.length > 0) {
-      this.form!.patchValue({ photo: event.target.files[0] });
-    }
+    this.patchDefaultValues();
   }
 }

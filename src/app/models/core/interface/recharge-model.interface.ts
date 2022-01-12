@@ -1,12 +1,11 @@
 import { Status } from '@app/models/core/enums/status.enum';
 import { Charge } from '@app/models/core/interface/charge.interface';
 
-export interface Streaming {
-  id: string;
+export interface RechargeModel {
+  status: Status;
   name: string;
-  phoneNumber: string;
-  charge: Charge[];
   reference: string;
   photo: string;
-  status: Status;
+  charge: Charge[];
+  phoneNumber: string;
 }

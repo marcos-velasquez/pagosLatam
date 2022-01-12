@@ -1,6 +1,7 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Charge } from '@core/interfaces/charge.interface';
+import { Charge } from '@app/models/core/interface/charge.interface';
+import { RegisterValueAccessor } from '@core/helpers/register-value-accessor.helper';
 
 @Component({
   selector: 'app-pick-list',
@@ -14,8 +15,7 @@ import { Charge } from '@core/interfaces/charge.interface';
     },
   ],
 })
-export class PickListComponent implements OnInit, ControlValueAccessor {
-  target: Charge[] = [];
+export class PickListComponent extends RegisterValueAccessor<Charge[]> implements OnInit, ControlValueAccessor {
   source: Charge[] = [
     {
       name: 'movistar',
@@ -23,42 +23,30 @@ export class PickListComponent implements OnInit, ControlValueAccessor {
     },
   ];
   total = 0;
-  _onChange!: (_: any) => void;
-  _onTouched!: () => void;
 
-  constructor() {}
+  constructor() {
+    super();
+  }
 
   ngOnInit(): void {}
 
   onMoveToSource() {
     this._onTouched();
-    if (this.target?.length === 0) {
+    if (this.value?.length === 0) {
       this._onChange(null);
     } else {
-      this._onChange(this.target);
+      this._onChange(this.value);
     }
     this.updateTotal();
   }
 
   onMoveToTarget() {
     this._onTouched();
-    this._onChange(this.target);
+    this._onChange(this.value);
     this.updateTotal();
   }
 
   updateTotal() {
-    this.total = this.target.reduce((acc, val) => acc + val.price, 0);
-  }
-
-  writeValue(charge: Charge[]) {
-    this.target = charge;
-  }
-
-  registerOnChange(fn: (_: any) => void) {
-    this._onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void) {
-    this._onTouched = fn;
+    this.total = this.value.reduce((acc, val) => acc + val.price, 0);
   }
 }

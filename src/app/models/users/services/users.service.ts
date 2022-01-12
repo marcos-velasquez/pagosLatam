@@ -23,7 +23,6 @@ export class UsersService {
 
   create(user: User) {
     const { id, ...data } = user;
-    console.log(id);
     return setDoc(doc(this.firestore, this.basePath, id), data);
   }
 

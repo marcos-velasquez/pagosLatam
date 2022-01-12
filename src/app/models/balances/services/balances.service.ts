@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
-import { Balance } from '../interfaces/balance.interface';
+import { Firestore } from '@angular/fire/firestore';
 import { AuthenticationService } from '@pages/authentication/services/authentication.service';
-import { Status } from '@core/enums/status.enum';
+import { RechargeService } from '@app/models/core/services/recharge.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BalancesService {
-  private basePath = 'balances';
+export class BalancesService extends RechargeService {
+  constructor(override firestore: Firestore, override auth: AuthenticationService) {
+    super(firestore, auth);
+  }
 
-  constructor(private firestore: Firestore, private auth: AuthenticationService) {}
-
-  create(balance: Balance) {
-    balance.status = Status.PENDING;
-    const ref = collection(this.firestore, 'users/' + this.auth.id + '/' + this.basePath);
-    return addDoc(ref, balance);
+  get basePath() {
+    return 'balances';
   }
 }

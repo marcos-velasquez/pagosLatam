@@ -17,6 +17,4 @@ export class StorageService {
         .catch(reject);
     });
   }
-
-  delete() {}
 }

@@ -1,6 +1,7 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { RegisterValueAccessor } from '@core/helpers/register-value-accessor.helper';
 
 @Component({
   selector: 'app-input-phone',
@@ -14,32 +15,18 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     },
   ],
 })
-export class InputPhoneComponent implements OnInit, ControlValueAccessor {
-  currentValue?: any;
-  _onChange!: (_: any) => void;
-  _onTouched!: () => void;
-
+export class InputPhoneComponent extends RegisterValueAccessor<number> implements OnInit, ControlValueAccessor {
   CountryISO = CountryISO;
   PhoneNumberFormat = PhoneNumberFormat;
 
-  constructor() {}
+  constructor() {
+    super();
+  }
 
   ngOnInit(): void {}
 
   onChange() {
     this._onTouched();
-    this._onChange(this.currentValue?.['e164Number']);
-  }
-
-  writeValue(value: number) {
-    this.currentValue = value;
-  }
-
-  registerOnChange(fn: (_: any) => void) {
-    this._onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void) {
-    this._onTouched = fn;
+    this._onChange(this.value?.['e164Number']);
   }
 }

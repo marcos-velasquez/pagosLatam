@@ -1,12 +1,5 @@
-import { Status } from '@core/enums/status.enum';
-import { Charge } from '@core/interfaces/charge.interface';
+import { RechargeModel } from './../../core/interface/recharge-model.interface';
 
-export interface Balance {
-  name: string;
-  phoneNumber: string;
+export interface Balance extends RechargeModel {
   phoneTarget: string;
-  reference: string;
-  photo: string;
-  charge: Charge[];
-  status: Status;
 }
