@@ -30,6 +30,7 @@ export class HistoryComponent implements OnInit {
   }
 
   onBalances = () => {
+    this.showGlobalSearch = false;
     this.balancesService
       .getAllByCurrentUser()
       .then((balances) => {
@@ -40,6 +41,7 @@ export class HistoryComponent implements OnInit {
   };
 
   onStreaming = () => {
+    this.showGlobalSearch = false;
     this.streamingService
       .getAllByCurrentUser()
       .then((streaming) => {
@@ -50,6 +52,7 @@ export class HistoryComponent implements OnInit {
   };
 
   onVideoGames = () => {
+    this.showGlobalSearch = true;
     this.videoGamesService
       .getAllByCurrentUser()
       .then((videogames) => {
