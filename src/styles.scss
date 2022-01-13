@@ -2,73 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./app/core/styles";
 
 .main__content {
-  min-height: 95vh;
-  background-size: cover;
-  z-index: -1;
-}
-
-.p-card-body {
-  width: 100%;
-}
-.error__messages {
-  position: absolute;
-  bottom: -1.3rem;
-  right: 0;
-  color: red;
-  font-weight: 600;
-}
-.p-button {
-  color: white;
-}
-
-.scrollbar {
-  --scrollbar-track: initial;
-  --scrollbar-thumb: initial;
-  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-  overflow: overlay;
-}
-
-* {
-  scrollbar-width: thin;
-}
-
-*::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-*::-webkit-scrollbar-track {
-  @apply bg-gray-50 dark:bg-gray-900;
-}
-
-*::-webkit-scrollbar-thumb {
-  @apply bg-gray-900 rounded-md;
-}
-
-.p-avatar-text {
-  @apply text-yellow-300;
-}
-
-.p-button-label {
-  @apply uppercase;
-}
-
-.p-datatable .p-sortable-column:not(.p-highlight):hover {
-  @apply bg-gray-800;
-}
-
-.p-datatable .p-sortable-column.p-highlight:hover {
-  background: #1f2d40;
-}
-
-.p-dialog {
-  @apply h-screen w-screen md:w-10/12 md:h-5/6;
-  max-height: 100% !important;
-}
-
-p-confirmdialog .p-dialog {
-  height: 150px !important;
-  width: 300px !important;
+  min-height: calc(100vh - 77px);
+  @apply py-5;
 }

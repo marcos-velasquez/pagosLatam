@@ -1,0 +1,7 @@
+.p-datatable .p-sortable-column:not(.p-highlight):hover {
+  @apply bg-gray-800;
+}
+
+.p-datatable .p-sortable-column.p-highlight:hover {
+  background: #1f2d40;
+}
