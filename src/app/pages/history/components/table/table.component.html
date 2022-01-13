@@ -1,0 +1,70 @@
+<p-table
+  [value]="data"
+  responsiveLayout="scroll"
+  [paginator]="true"
+  [rows]="10"
+  [responsive]="true"
+  [columns]="cols"
+  [rowHover]="true"
+  [globalFilterFields]="['name', 'phoneNumber', 'status', 'reference']"
+  [resizableColumns]="true"
+  columnResizeMode="expand"
+  class="w-full md:px-10 px-3 mt-10"
+  #table
+>
+  <ng-template pTemplate="caption">
+    <div class="p-d-flex">
+      <span class="p-input-icon-left p-ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="table.filterGlobal($event.target['value'], 'contains')"
+          placeholder="Search keyword"
+        />
+      </span>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="name">NOMBRE<p-sortIcon></p-sortIcon></th>
+      <th pSortableColumn="phoneNumber">TELÉFONO<p-sortIcon></p-sortIcon></th>
+      <th [pSortableColumn]="col.field" *ngFor="let col of cols">
+        {{ col.header }}
+        <p-sortIcon></p-sortIcon>
+      </th>
+      <th pSortableColumn="reference">REFERENCIA<p-sortIcon></p-sortIcon></th>
+      <th pSortableColumn="photo">FOTO<p-sortIcon></p-sortIcon></th>
+      <th pSortableColumn="status">ESTADO<p-sortIcon></p-sortIcon></th>
+      <th style="width: 4em"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      <td>
+        {{ rowData.name }}
+      </td>
+      <td>
+        {{ rowData.phoneNumber }}
+      </td>
+      <td *ngFor="let col of columns">
+        {{ rowData[col.field] }}
+      </td>
+      <td>
+        {{ rowData.reference }}
+      </td>
+      <td>
+        <p-image [src]="rowData.photo" [alt]="rowData.name" width="70" [preview]="true"></p-image>
+      </td>
+      <td>
+        <p-tag styleClass="p-mr-2" severity="success" [value]="rowData.status"></p-tag>
+      </td>
+      <td>
+        <button type="button" pButton icon="pi pi-shopping-bag" (click)="showCharge(rowData)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<app-list-charge [charge]="charge"></app-list-charge>

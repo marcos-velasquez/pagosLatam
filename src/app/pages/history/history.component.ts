@@ -3,13 +3,6 @@ import { ToastService } from '@core/components/prime-ng/services/toast.service';
 import { BalancesService } from '@models/balances/services/balances.service';
 import { StreamingService } from '@models/streaming/services/streaming.service';
 import { VideoGamesService } from '@models/videogames/services/videogames.service';
-import { Charge } from '@app/models/core/interfaces/charge.interface';
-
-enum Category {
-  BALANCE,
-  STREAMING,
-  VIDEOGAMES,
-}
 
 @Component({
   selector: 'app-history',
@@ -17,46 +10,26 @@ enum Category {
   styleUrls: ['./history.component.scss'],
 })
 export class HistoryComponent implements OnInit {
-  private actions: Map<Category, Function> = new Map();
-  categories = [
-    {
-      name: 'RECARGA SALDO',
-      value: Category.BALANCE,
-    },
-    {
-      name: 'RECARGA STREAMING',
-      value: Category.STREAMING,
-    },
-    {
-      name: 'RECARGA VIDEOJUEGOS',
-      value: Category.VIDEOGAMES,
-    },
-  ];
-  cols: any[] = [];
+  cols: { header: string; field: string }[] = [];
   data: any[] = [];
   showGlobalSearch = false;
-  charge: Charge[] = [];
 
   constructor(
     private toast: ToastService,
     private balancesService: BalancesService,
     private streamingService: StreamingService,
     private videoGamesService: VideoGamesService
-  ) {
-    this.actions.set(Category.BALANCE, this.balances);
-    this.actions.set(Category.STREAMING, this.streaming);
-    this.actions.set(Category.VIDEOGAMES, this.videoGames);
-  }
+  ) {}
 
   ngOnInit(): void {
-    this.balances();
+    this.onBalances();
   }
 
   setData(data: any) {
     this.data = data;
   }
 
-  balances = () => {
+  onBalances = () => {
     this.balancesService
       .getAllByCurrentUser()
       .then((balances) => {
@@ -66,7 +39,7 @@ export class HistoryComponent implements OnInit {
       .catch((error) => this.toast.error(error.code));
   };
 
-  streaming = () => {
+  onStreaming = () => {
     this.streamingService
       .getAllByCurrentUser()
       .then((streaming) => {
@@ -76,7 +49,7 @@ export class HistoryComponent implements OnInit {
       .catch((error) => this.toast.error(error.code));
   };
 
-  videoGames = () => {
+  onVideoGames = () => {
     this.videoGamesService
       .getAllByCurrentUser()
       .then((videogames) => {
@@ -88,13 +61,4 @@ export class HistoryComponent implements OnInit {
       })
       .catch((error) => this.toast.error(error.code));
   };
-
-  search(event: any) {
-    this.actions.get(event.value)();
-    event.value === Category.VIDEOGAMES ? (this.showGlobalSearch = true) : (this.showGlobalSearch = false);
-  }
-
-  selectProduct(a: any) {
-    this.charge = a.charge;
-  }
 }
