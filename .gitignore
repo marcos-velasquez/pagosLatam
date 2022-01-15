@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/firebase-credential.txt
 # Only exists if Bazel was run
 /bazel-out
 
